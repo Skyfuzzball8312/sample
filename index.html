@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khu Du Lịch Đại Nam - Đại Nam Văn Hiến</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: #ffd700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1920');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #1a5f2a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1a5f2a;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            color: #1a5f2a;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: #2d8a3e;
+            margin-bottom: 10px;
+        }
+
+        .stat-item h4 {
+            font-size: 1.8rem;
+            color: #1a5f2a;
+        }
+
+        .stat-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Attractions Section */
+        .attractions {
+            background: white;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .attraction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .attraction-img {
+            height: 200px;
+            background: linear-gradient(135deg, #2d8a3e, #1a5f2a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .attraction-content {
+            padding: 25px;
+        }
+
+        .attraction-content h3 {
+            font-size: 1.4rem;
+            color: #1a5f2a;
+            margin-bottom: 10px;
+        }
+
+        .attraction-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Ticket Section */
+        .tickets {
+            background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 100%);
+            color: white;
+        }
+
+        .tickets .section-title h2,
+        .tickets .section-title p {
+            color: white;
+        }
+
+        .ticket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .ticket-card {
+            background: white;
+            color: #333;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .ticket-card h3 {
+            color: #1a5f2a;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .ticket-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ff6b00;
+            margin-bottom: 20px;
+        }
+
+        .ticket-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .ticket-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ticket-card li:last-child {
+            border-bottom: none;
+        }
+
+        .note {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .note p {
+            margin: 5px 0;
+        }
+
+        /* Info Section */
+        .info {
+            background: #f8f9fa;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: #2d8a3e;
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            color: #1a5f2a;
+            margin-bottom: 15px;
+        }
+
+        .info-card p, .info-card li {
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card li i {
+            font-size: 1rem;
+            margin-right: 10px;
+            color: #ffd700;
+        }
+
+        /* Games Section */
+        .games {
+            background: white;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .game-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .game-item:hover {
+            transform: scale(1.05);
+        }
+
+        .game-item i {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 15px;
+        }
+
+        .game-item h4 {
+            color: #1a5f2a;
+            margin-bottom: 10px;
+        }
+
+        .game-item p {
+            color: #ff6b00;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 50px 20px 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #2d8a3e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #ffd700;
+            color: #1a5f2a;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero {
+                margin-top: 120px;
+                height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-landmark"></i>
+                <span>ĐẠI NAM</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">Giới Thiệu</a></li>
+                    <li><a href="#attractions">Điểm Tham Quan</a></li>
+                    <li><a href="#games">Trò Chơi</a></li>
+                    <li><a href="#tickets">Giá Vé</a></li>
+                    <li><a href="#info">Thông Tin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>KHU DU LỊCH ĐẠI NAM</h1>
+            <p>Đại Nam Văn Hiến - Khu du lịch lớn nhất Đông Nam Á với quy mô 711 ha, nơi hội tụ tinh hoa văn hóa, giải trí và tâm linh</p>
+            <a href="#about" class="btn">Khám Phá Ngay</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Giới Thiệu</h2>
+                <p>Tổng quan về khu du lịch Đại Nam Văn Hiến</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Đại Nam Văn Hiến - Du Lịch Thần Tiên</h3>
+                    <p>Khu du lịch Đại Nam (còn gọi là Lạc Cảnh Đại Nam Văn Hiến) là khu du lịch có tổng diện tích rộng lớn hàng đầu cả nước lên đến <strong>711 ha</strong>, được đầu tư xây dựng trong suốt 10 năm liền với kinh phí khoảng <strong>6.000 tỷ đồng</strong>.</p>
+                    <p>Tọa lạc tại 1765A Quốc lộ 13, phường Hiệp An, TP. Thủ Dầu Một, Bình Dương - cách trung tâm TP.HCM khoảng 40km, Đại Nam là điểm đến lý tưởng cho cả gia đình và nhóm bạn.</p>
+                    <p>Nơi đây sở hữu nhiều công trình hoành tráng, xác lập nhiều kỷ lục Việt Nam và khu vực Đông Nam Á.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h4>711 ha</h4>
+                        <p>Diện tích</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-trophy"></i>
+                        <h4>10+</h4>
+                        <p>Kỷ lục</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-gamepad"></i>
+                        <h4>40+</h4>
+                        <p>Trò chơi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attractions Section -->
+    <section id="attractions" class="attractions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Điểm Tham Quan</h2>
+                <p>Những điểm đến không thể bỏ lỡ tại Đại Nam</p>
+            </div>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <i class="fas fa-gopuram"></i>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Đền Đại Nam - Kim Điện</h3>
+                        <p>Ngôi đền lớn nhất Việt Nam với kiến trúc cổ kính, các pho tượng Phật dát vàng 24K. Nơi tổ chức Đại Lễ Phật Đản Liên Hiệp Quốc VESAK.</p>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Biển Nhân Tạo Đại Nam</h3>
+                        <p>Biển nhân tạo lớn nhất Việt Nam với diện tích 22 ha, có cả biển nước mặn và nước ngọt, hệ thống tạo sóng tự nhiên.</p>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Vườn Thú Đại Nam</h3>
+                        <p>Vườn thú mở đầu tiên tại Việt Nam với diện tích 12,5 ha, hơn 100 loài động vật quý hiếm như hổ trắng, tê giác, sư tử trắng.</p>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Trường Đua Đại Nam</h3>
+                        <p>Trường đua tốc độ phức hợp chuẩn quốc tế đầu tiên tại Việt Nam với 5 loại hình đua: ngựa, chó, moto, go-kart, jet-ski.</p>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Dãy Núi Bảo Sơn</h3>
+                        <p>Dãy núi nhân tạo cao nhất Việt Nam với 5 ngọn núi cao 65.8m, bên trong có các bức tượng Bồ Tát, Di Lặc hoành tráng.</p>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Nông Trại Càng Cua</h3>
+                        <p>Khu trải nghiệm sinh thái cho trẻ em với các hoạt động: bắt cá, chèo xuồng, làm gốm, thu hoạch rau củ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="games">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trò Chơi Giải Trí</h2>
+                <p>Hơn 40 trò chơi đặc sắc cho mọi lứa tuổi</p>
+            </div>
+            <div class="games-grid">
+                <div class="game-item">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Tàu Lượn Siêu Tốc</h4>
+                    <p>70.000đ/lượt</p>
+                </div>
+                <div class="game-item">
+                    <i class="fas fa-plane"></i>
+                    <h4>Thám Hiểm Bầu Trờii</h4>
+                    <p>50.000đ/lượt</p>
+                </div>
+                <div class="game-item">
+                    <i class="fas fa-car"></i>
+                    <h4>Đua Xe F1</h4>
+                    <p>80.000đ/lượt</p>
+                </div>
+                <div class="game-item">
+                    <i class="fas fa-water"></i>
+                    <h4>Vượt Thác</h4>
+                    <p>50.000đ/lượt</p>
+                </div>
+                <div class="game-item">
+                    <i class="fas fa-snowflake"></i>
+                    <h4>Thế Giới Tuyết</h4>
+                    <p>50.000đ/lượt</p>
+                </div>
+                <div class="game-item">
+                    <i class="fas fa-film"></i>
+                    <h4>Phim 4D & Vòm</h4>
+                    <p>50.000đ/lượt</p>
+                </div>
+                <div class="game-item">
+                    <i class="fas fa-dungeon"></i>
+                    <h4>18 Tầng Địa Ngục</h4>
+                    <p>50.000đ/lượt</p>
+                </div>
+                <div class="game-item">
+                    <i class="fas fa-dragon"></i>
+                    <h4>Ngũ Long Cung</h4>
+                    <p>50.000đ/lượt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tickets Section -->
+    <section id="tickets" class="tickets">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bảng Giá Vé</h2>
+                <p>Giá vé tham khảo - Cập nhật 2026</p>
+            </div>
+            <div class="ticket-grid">
+                <div class="ticket-card">
+                    <h3>Vé Vào Cổng</h3>
+                    <div class="ticket-price">MIỄN PHÍ</div>
+                    <ul>
+                        <li><span>Vé vào cổng KDL</span> <span>Miễn phí</span></li>
+                        <li><span>Trẻ em dưới 1m</span> <span>Miễn phí</span></li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: #666;">Áp dụng đến hết năm 2025</p>
+                </div>
+                <div class="ticket-card">
+                    <h3>Vé Biển Đại Nam</h3>
+                    <div class="ticket-price">200K</div>
+                    <ul>
+                        <li><span>Ngưới lớn (ngày thường)</span> <span>200.000đ</span></li>
+                        <li><span>Ngưới lớn (cuối tuần)</span> <span>250.000đ</span></li>
+                        <li><span>Trẻ em (ngày thường)</span> <span>100.000đ</span></li>
+                        <li><span>Trẻ em (cuối tuần)</span> <span>120.000đ</span></li>
+                    </ul>
+                </div>
+                <div class="ticket-card">
+                    <h3>Vé Vườn Thú</h3>
+                    <div class="ticket-price">150K</div>
+                    <ul>
+                        <li><span>Ngưới lớn</span> <span>150.000đ</span></li>
+                        <li><span>Trẻ em</span> <span>80.000đ</span></li>
+                    </ul>
+                </div>
+                <div class="ticket-card">
+                    <h3>Combo Trò Chơi</h3>
+                    <div class="ticket-price">400K</div>
+                    <ul>
+                        <li><span>Combo 12 trò chơi</span> <span>400.000đ</span></li>
+                        <li><span>Combo 6 trò chơi</span> <span>200.000đ</span></li>
+                        <li><span>Combo 3 trò chơi</span> <span>120.000đ</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="note">
+                <p><i class="fas fa-info-circle"></i> <strong>Lưu ý:</strong> Trẻ em cao từ 1m - 1m4 tính vé trẻ em | Trên 1m4 tính vé ngưới lớn</p>
+                <p>Giá vé có thể thay đổi theo từng thờii điểm, vui lòng liên hệ hotline để biết thông tin chính xác nhất</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="info" class="info">
+        <div class="container">
+            <div class="section-title">
+                <h2>Thông Tin Hữu Ích</h2>
+                <p>Những điều cần biết khi đến Đại Nam</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Giờ Mở Cửa</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Thứ 2 - Thứ 6: 8:00 - 17:00</li>
+                        <li><i class="fas fa-check"></i> Thứ 7 - Chủ Nhật: 8:00 - 18:00</li>
+                        <li><i class="fas fa-check"></i> Ngày lễ, Tết: Có thể kéo dài</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Địa Chỉ & Liên Hệ</h3>
+                    <p><strong>Địa chỉ:</strong> 1765A QL13, P. Hiệp An, TP. Thủ Dầu Một, Bình Dương</p>
+                    <p><strong>Hotline:</strong> 0274 3845 878</p>
+                    <p><strong>Cách TP.HCM:</strong> Khoảng 40km (1 giờ di chuyển)</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-route"></i>
+                    <h3>Hướng Dẫn Di Chuyển</h3>
+                    <ul>
+                        <li><i class="fas fa-motorcycle"></i> Xe máy/ô tô: QL13 về Bình Dương</li>
+                        <li><i class="fas fa-bus"></i> Xe buýt: Tuyến từ Bến Thành, Chợ Lớn, Miền Tây</li>
+                        <li><i class="fas fa-taxi"></i> Taxi/Grab: Khoảng 300-500k/chiều</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Mẹo Du Lịch</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Nên đi vào tháng 12 - tháng 1 (thờii tiết đẹp)</li>
+                        <li><i class="fas fa-check"></i> Tránh ngày lễ để không đông đúc</li>
+                        <li><i class="fas fa-check"></i> Mang theo nón, kem chống nắng, nước uống</li>
+                        <li><i class="fas fa-check"></i> Nên đi 2 ngày 1 đêm để trải nghiệm trọn vẹn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>Khu Du Lịch Đại Nam</h3>
+                <p>Đại Nam Văn Hiến - Nơi hội tụ tinh hoa văn hóa Việt, điểm đến giải trí hàng đầu Đông Nam Á.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Liên Kết Nhanh</h3>
+                <ul>
+                    <li><a href="#about">Giới Thiệu</a></li>
+                    <li><a href="#attractions">Điểm Tham Quan</a></li>
+                    <li><a href="#games">Trò Chơi</a></li>
+                    <li><a href="#tickets">Giá Vé</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Thông Tin Liên Hệ</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 1765A QL13, Hiệp An, Thủ Dầu Một, Bình Dương</p>
+                <p><i class="fas fa-phone"></i> 0274 3845 878</p>
+                <p><i class="fas fa-envelope"></i> info@dainam.com.vn</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kỷ Lục Đại Nam</h3>
+                <ul>
+                    <li>KDL lớn nhất Đông Nam Á (711 ha)</li>
+                    <li>Biển nhân tạo lớn nhất VN (22 ha)</li>
+                    <li>Đền thờ lớn nhất Việt Nam</li>
+                    <li>Vườn thú mở đầu tiên tại VN</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Khu Du Lịch Đại Nam. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
